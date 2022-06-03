@@ -1,47 +1,36 @@
+<%@page import="com.product.dao.DbUtil"%>
+<%@page import="org.hibernate.dialect.DB2390Dialect"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ page import="com.avtar.dao.*" %>
-    <%@ page import="com.avtar.pojo.*" %>
+    
+    
+   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert</title>
-<style>
-.c1{text-align:center; position:absolute; font-size:30px; color:purple; left:35%;}
-.c2{color:Green; font-size:50px;}
-</style>
+<title>Insert title here</title>
 </head>
-<body bgcolor="#F7C0AE">
-
-<center>
-
+<body>
 <%
-Student s=new Student();
-s.setId(request.getParameter("id"));
-s.setName(request.getParameter("name"));
-s.setEmail(request.getParameter("email"));
-StudentDAO dao=new StudentDAO();
-int row=dao.insertstudent(s);
+
+Connection con = DbUtil.getConn();
+String id =  request.getParameter("id");
+String pname = request.getParameter("pname");
+String price = request.getParameter("price");
+int row=dao.insert(e);
 if(row>0){
-	out.print("Insertion is successfull");
+	out.print("insertion sucessful");
 }
 else{
-	out.print("Insertion failed");
+	out.print("insertion failed");
 }
+
 %>
 
-<div class="c1">
-<br> <br>
-<a href="index.jsp">Insert more record</a> 
-
-<form action="retrieve.jsp">  
-
-<br> <br>
-
-<input type="submit" value="getstudents" style="font-size:30px; color:blue; width:450px;">
+<form action="retrive.jsp">
+<input type="submit" value="getallemp">
 </form>
-</div>
-</center>
 </body>
 </html>
